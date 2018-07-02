@@ -2,7 +2,7 @@
 
 ### libdemo: Пример динамической библеотеки из лекций:
 
-*Запуск*
+**Запуск:**
 
 ```
 > make
@@ -21,15 +21,15 @@ int stringStat(const char *string, size_t multiplier, int *count);
 
 Функция возвращает значение длины строки string, умноженное на multiplier, и увеличивает на 1 значение, на которое указывает count.
 
-*Представление решения*
+**Представление решения:**
 
 Решение предоставляется в виде двух файлов solution.c и Makefile, в последнем предполагается цель по умолчанию, которая приводит к сборке Вашей библиотеки.
 
-*Вывод*
+**Вывод:**
 
 Программа (функция в библиотеке) ничего не выводит на консоль
 
-*Запуск*
+**Запуск:**
 
 ```
 > export LD_LIBRARY_PATH=.
@@ -48,7 +48,7 @@ libsolution.so => ./libsolution.so (0x00007fd34d302000)
 
 Разработать программу solution, обеспечивающую загрузку динамической библиотеки в режиме исполнения. При запуске, программе передается имя динамической библиотеки, имя функции которая должна быть вызвана, и ее аргумент. Функция в библиотеке принимает на вход int и возвращает int. Результат, возвращаемый функцией должен быть выведен отдельной строкой (оканчиваться символом новой строки \n)  в stdout.
 
-*Пример вызова:*
+**Пример вызова:**
 
 ```
 > ./solution libShared.so someSecretFunctionPrototype 8
@@ -57,15 +57,15 @@ libsolution.so => ./libsolution.so (0x00007fd34d302000)
 
 В примере, должна быть загружена библиотека libShared.so, в которой вызвана функция someSecretFunctionPrototype с аргументом 8. Результат (16) выведен в stdout.
 
-*Представление решения*
+**Представление решения:**
 
 Решение предоставляется в виде двух файлов solution.c и Makefile, в последнем предполагается цель по умолчанию, которая приводит к сборке Вашего приложения.
 
-*Вывод*
+**Вывод:**
 
 Программа выводит в стандартный поток вывода число, полученное после вызова функции, и символ новой строки \n.
 
-*Запуск*
+**Запуск:**
 
 ```
 > make lib
@@ -81,8 +81,8 @@ Library was not loaded
 -----------------------------------------------------------------------------------
 
 ## Полезные ссылки:
-https://www.opennet.ru/man.shtml?topic=nm&category=1&russian=2
-https://www.opennet.ru/man.shtml?topic=ld-linux.so&category=8&russian=0
-https://www.opennet.ru/base/dev/lib_dependence.txt.html
-https://www.opennet.ru/man.shtml?topic=dlopen&category=3
-https://www.opennet.ru/man.shtml?topic=dlsym&category=3&russian=0
+1. https://www.opennet.ru/man.shtml?topic=nm&category=1&russian=2
+2. https://www.opennet.ru/man.shtml?topic=ld-linux.so&category=8&russian=0
+3. https://www.opennet.ru/base/dev/lib_dependence.txt.html
+4. https://www.opennet.ru/man.shtml?topic=dlopen&category=3
+5. https://www.opennet.ru/man.shtml?topic=dlsym&category=3&russian=0
