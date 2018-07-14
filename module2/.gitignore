@@ -1,0 +1,10 @@
+*
+!.gitignore
+!readme.md
+!filedemo
+!task1
+!task2
+!*.c
+!*.h
+!*.cpp
+!Makefile

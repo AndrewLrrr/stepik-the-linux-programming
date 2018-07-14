@@ -6,7 +6,7 @@
 
 char *concat(const char *s1, const char *s2)
 {
-    char *buffer = malloc(strlen(s1)+strlen(s2)+1);
+    char *buffer = malloc(strlen(s1) + strlen(s2) + 1);
 
     if (NULL == buffer) {
         printf("String concatenation was failed\n");
