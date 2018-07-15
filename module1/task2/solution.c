@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    multiplier = dlsym(hdl, argv[2]);
+    multiplier = (int (*)(int)) dlsym(hdl, argv[2]);
 
     if (NULL == multiplier) {
         printf("Library was not loaded\n");
