@@ -5,71 +5,50 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-char *concat(const char *s1, const char *s2, const char *s3)
+
+char *get_parent_pid(const pid_t pid, pid_t *ppid)
 {
-    char *buffer = malloc(strlen(s1) + strlen(s2) + strlen(s3) + 1);
-
-    if (NULL == buffer) {
-        printf("String concatenation was failed\n");
-        exit(1);
-    }
-
-    strcpy(buffer, s1);
-    strcat(buffer, s2);
-    strcat(buffer, s3);
-    return buffer;
-}
-
-char *get_parent_pid(char const *current)
-{
-    int counter = 0;
-    char buf[1024];
-    char *pch;
-    char *path = concat("/proc/", current, "/stat");
+    char path[100];
+    char buffer[1024];
+    sprintf(path, "/proc/%d/stat", pid);
 
     int fd = open(path, O_RDONLY);
 
     if (fd == -1) {
         perror("fd");
         printf("Error path: %s\n", path);
-        free(path);
         exit(1);
     }
 
-    read(fd, buf, 1024);
+    read(fd, buffer, 1024);
 
-    pch = strtok(buf, " ");
-    while (counter != 3) {
+    int counter = 0;
+    char *pch = strtok(buffer, " ");
+    while (counter != 2) {
         pch = strtok(NULL, " ");
         counter++;
     }
+    *ppid = atoi(strtok(NULL, " "));
 
-    char *cur = malloc(strlen(pch));
-    strcpy(cur, pch);
-
-    free(path);
-
-    return cur;
+    close(fd);
 }
 
-void print_process_parents(char *pid)
+void print_process_parents(char *inp)
 {
-    char *current = pid;
+    pid_t pid = atoi(inp);
 
-    while (strcmp(current, "1") != 0) {
-        if (strcmp(current, "0") == 0) {
+    while (pid != 1) {
+        if (pid == 0) {
             break;
         }
-        printf("%s\n", current);
-        char *ppid = get_parent_pid(current);
-        strcpy(current, ppid);
-        free(ppid);
+        printf("%d\n", pid);
+        get_parent_pid(pid, &pid);
     }
 
-    if (strcmp(current, "1") == 0) {
-        printf("--------\n%s (init)\n", current);
+    if (pid == 1) {
+        printf("--------\n%d (init)\n", pid);
     } else {
-        printf("--------\n%s (sched)\n", current);
+        printf("--------\n%d (sched)\n", pid);
     }
 }
 
