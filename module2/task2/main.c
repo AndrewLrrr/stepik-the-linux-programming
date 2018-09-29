@@ -6,7 +6,7 @@
 #include <fcntl.h>
 
 
-char *get_parent_pid(const pid_t pid, pid_t *ppid)
+void get_parent_pid(const pid_t pid, pid_t *ppid)
 {
     char path[100];
     char buffer[1024];

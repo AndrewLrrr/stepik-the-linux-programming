@@ -1,0 +1,15 @@
+*
+!.gitignore
+!README.md
+!*.c
+!*.h
+!*.cpp
+!genenv
+!*.sh
+!Makefile
+!clonedemo
+!task1
+!task2
+!task3
+!task4
+!task5
