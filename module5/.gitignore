@@ -1,0 +1,9 @@
+*
+!.gitignore
+!README.md
+!*.c
+!*.py
+!Makefile
+!task1
+!task2
+!task3
